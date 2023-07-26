@@ -1,10 +1,29 @@
 <template>
-  <div>
-    <h1 ref="title" data-value="DENNIS VULDERS" class="magic">DENNIS VULDERS</h1>
+  <div class="main-content">
+    <div class="card">
+      <div class="card-content">
+        <h1 ref="title" data-value="About me" class="magic">About me</h1>
+        <h2>My name is Dennis Vulders</h2>
+        <p>blablablablablablablablablablablablabla</p>
+      </div>
+    </div>
+    <SliderTag/>
+
+    <!-- <TagScroller /> -->
+    <!-- <TimeLine/> -->
   </div>
 </template>
 <script>
+// import TimeLine from "@/components/TimeLine.vue";
+// import TagScroller from "@/components/TagScroller.vue";
+import SliderTag from '@/components/SliderTag.vue';
+
 export default {
+  components: {
+    // TimeLine,
+    // TagScroller,
+    SliderTag,
+  },
   mounted() {
     this.animateText(); // Invoke the animation on page load
 
@@ -42,46 +61,21 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/style/main.scss";
-body {
-  display: grid;
-  place-items: center;
-  height: 100vh;
-  margin: 0rem;
+
+.main-content {
+  padding: 1rem;
   overflow: hidden;
 }
 
-h1 {
-  font-family: "Space Mono", monospace;
-  font-size: clamp(3rem, 10vw, 10rem);
-  padding: 0rem clamp(1rem, 2vw, 3rem);
-  border-radius: clamp(0.4rem, 0.75vw, 1rem);
+body {
+	display:flex;
+	flex-flow:column;
+	justify-content:center;
+	background:#eaeaea;
+	height:100vh;
 }
 
-.magic {
-  animation: background-pan 2s linear infinite;
-  background: linear-gradient(
-    to right,
-    $primary,
-    $darktone,
-    $highlight,
-    $primary
-  );
-  background-size: 200%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  white-space: nowrap;
-}
-
-@keyframes background-pan {
-  from {
-    background-position: 0% center;
-  }
-  
-  to {
-    background-position: -200% center;
-  }
-}
 </style>

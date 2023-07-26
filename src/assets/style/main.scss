@@ -1,6 +1,166 @@
 $primary: #00B894;
 $secondary: #55E6C1;
 $highlight: #00FFD4;
-$darktone: #00A0A7;
-$neutral-background: #1D1E22;
+$darktone: rgba(0, 159, 167, 0.2);
+$neutral-background: #101010;
+$background-accent: #1D1E22;
+$background-transparent: rgba(16, 16, 16, 0.88);
 $text: #FFFFFF;
+
+@font-face {
+  font-family: 'Blanka';
+  src: url('@/assets/fonts/Blanka.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Neurock';
+  src: url('@/assets/fonts/Neurock.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('@/assets/fonts/Montserrat.otf') format('opentype');
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+h1 {
+  font-family: "Blanka";
+  font-size: clamp(2rem, 10vw, 2rem);
+  padding: 0rem clamp(1rem, 2vw, 3rem);
+  border-radius: clamp(0.4rem, 0.75vw, 1rem);
+  text-align: left;
+}
+
+h3, h2, p {
+  font-family: "Montserrat", monospace;
+}
+
+.magic {
+  animation: background-pan 2s linear infinite;
+  background: linear-gradient(
+    to right,
+    $primary,
+    $darktone,
+    $highlight,
+    $primary
+  );
+  background-size: 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+
+@keyframes background-pan {
+  from {
+    background-position: 0% center;
+  }
+  
+  to {
+    background-position: -200% center;
+  }
+}
+
+/* -- cards -- */
+
+h1, h2, h3, p {
+  margin: 0rem;
+}
+
+.card {
+  width: 640px;
+  position: relative;
+  background-color: rgb(16 16 16);
+  border: 1px solid rgb(255 255 255 / 5%);
+  border-radius: 1.5rem;
+  padding: 1rem;
+}
+
+.card:after {  
+  content: "";
+  height: 70px;
+  width: 1px;  
+  position: absolute;  
+  left: -1px;
+  top: 65%;
+  transition: top, opacity;
+  transition-duration: 600ms;
+  transition-timing-function: ease;
+  background: linear-gradient(
+    transparent,
+    $highlight,
+    transparent
+  );
+  opacity: 0;
+}
+
+.card:after {  
+  top: 65%;
+  opacity: 0;
+}
+
+.card:hover:after {
+  top: 25%;
+  opacity: 1;
+}
+
+.card-content {  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.1) 1px, 
+    transparent 1px
+  );
+  background-position: 50% 50%;
+  background-size: 1.1rem 1.1rem;
+  padding: 4rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.card-content > :is(h1, h3, p) {
+  text-align: center;
+}
+
+.card-content > h1 {
+  color: rgb(250 249 246); 
+  font-size: 2.6rem;
+}
+
+.card-content > h3 {
+  color: $primary;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+}
+
+.card-content > p {
+  color: rgb(255 255 255 / 75%);
+  line-height: 1.5rem;
+}
+
+@media(max-width: 700px) {
+  .card {
+    width: calc(100% - 2rem);
+    margin: 0rem 1rem;
+    padding: 0.75rem;
+    border-radius: 1rem;
+  }
+}
+
+@media(max-width: 600px) {
+  .card-content {
+    padding: 3rem;
+  }
+  
+  .card-content > h1 {
+    font-size: 2.2rem;
+  }
+}

@@ -4,7 +4,7 @@ import HomeView from "../views/HomeView.vue";
 const routes = [
   {
     path: "/",
-    name: "home",
+    name: "",
     component: HomeView,
   },
   {
@@ -21,6 +21,12 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const pageTitle = to.name || 'Dennis Vulders'; // Use the route name as the page title
+  document.title = pageTitle;
+  next();
 });
 
 export default router;
