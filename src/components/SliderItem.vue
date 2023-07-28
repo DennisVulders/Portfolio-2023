@@ -4,8 +4,10 @@
       <div class="tag">
         <div class="tag-border">
           <div class="tag-inside-wrapper">
-            <div class="tag-green-dot"></div>
-              <a :href="skill.href" :class="skill.class">{{ skill.text }}</a>
+            <div class="tag-icon">
+              <font-awesome-icon :icon="icon" />
+            </div>
+            <a :href="skill.href" :class="skill.class">{{ skill.text }}</a>
           </div>
         </div>
       </div>
@@ -18,6 +20,10 @@ export default {
   props: {
     skill: {
       type: Object,
+      required: true,
+    },
+    icon: {
+      type: Array, // Assuming you're using an array for the icon prop (e.g., ['far', 'envelope'])
       required: true,
     },
   },
@@ -93,5 +99,9 @@ li {
   background-color: $highlight;
   border-radius: 999px;
   margin-top: -2px;
+}
+
+.tag-icon {
+  font-size: 15px;
 }
 </style>

@@ -1,29 +1,37 @@
 <template>
-  <div class="main-content">
-    <div class="card">
-      <div class="card-content">
-        <h1 ref="title" data-value="About me" class="magic">About me</h1>
-        <h2>My name is Dennis Vulders</h2>
-        <p>blablablablablablablablablablablablabla</p>
-      </div>
+  <div class="card">
+    <div class="card-content">
+      <h1 ref="title" data-value="About me" class="magic">About me</h1>
+      <h2>My name is Dennis Vulders</h2>
+      <p>blablablablablablablablablablablablabla</p>
     </div>
-    <SliderTag/>
-
-    <!-- <TagScroller /> -->
-    <!-- <TimeLine/> -->
   </div>
+  <!-- Pass the 'skillsData' to the 'SliderContainer' component -->
+  <!-- <SliderContainer :skills="skillsData" :speed="0.5" /> -->
 </template>
-<script>
-// import TimeLine from "@/components/TimeLine.vue";
-// import TagScroller from "@/components/TagScroller.vue";
-import SliderTag from '@/components/SliderTag.vue';
 
+<script>
+// import SliderContainer from '@/components/SliderContainer.vue';
+// import { fab } from '@fortawesome/free-brands-svg-icons'; // Import the necessary Font Awesome icon style
+// not working yet
 export default {
   components: {
-    // TimeLine,
-    // TagScroller,
-    SliderTag,
+    // SliderContainer,
   },
+  data() {
+    return {
+      skillsData: [
+        { text: 'HTML', icon: ['fab', 'html5'] },
+        { text: 'CSS', icon: ['fab', 'css3'] },
+        { text: 'Scss/Sass', icon: ['fab', 'sass'] },
+        { text: 'JavaScript', icon: ['fab', 'square-js'] },
+        { text: 'Vue.js', icon: ['fab', 'vuejs'] },
+        { text: 'Node.js', icon: ['fab', 'node'] },
+        { text: 'Github', icon: ['fab', 'github'] },
+      ],
+    };
+  },
+
   mounted() {
     this.animateText(); // Invoke the animation on page load
 
@@ -64,11 +72,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/style/main.scss";
-
-.main-content {
-  padding: 1rem;
-  overflow: hidden;
-}
 
 body {
 	display:flex;

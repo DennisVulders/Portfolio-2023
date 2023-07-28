@@ -1,15 +1,13 @@
 <template>
   <div class="main-content">
-    <SliderTag/>
+    <h1>askhaskfadslaskd</h1>
   </div>
 </template>
 
 <script>
-import SliderTag from '@/components/SliderTag.vue';
 
 export default {
   components: {
-    SliderTag,
   }
 }
 </script>

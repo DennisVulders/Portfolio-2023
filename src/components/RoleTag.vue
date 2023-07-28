@@ -23,7 +23,6 @@ export default {
         { text: 'Scss/Sass' },
         { text: 'Vue' },
         { text: 'Node.js' },
-        { text: 'github' },
       ],
       wrapSlider: null,
       sliderList: [],
@@ -42,11 +41,10 @@ export default {
   methods: {
     calculateIterationItems() {
       const sliderWidth = this.$el.querySelector('.js-slider').offsetWidth;
-      return Math.ceil((this.widthWrap + sliderWidth) / sliderWidth);
+      return Math.ceil(this.widthWrap / sliderWidth);
     },
     initSlider() {
       this.sliderList = this.$el.querySelectorAll('.js-slider');
-
       this.iterationItems = this.calculateIterationItems();
 
       if (this.iterationItems > 1) {
@@ -61,14 +59,10 @@ export default {
       this.sliderList = Array.from(this.sliderList); // Convert to an array
 
       this.stateList = this.sliderList.map((item, i) => {
-        let pos = 0;
-        let start = false;
+        let pos = -item.offsetWidth * (i + 1); // Set the initial position outside the left edge
+        let start = true; // Set all to start as true initially
 
-        if (i < this.iterationItems - 1) {
-          pos = -this.widthWrap + this.sliderList[i].offsetWidth * i;
-          start = true;
-          this.sliderList[i].style.transform = `translate(${pos}px, -50%)`;
-        }
+        item.style.transform = `translate(${pos}px, -50%)`; // Apply initial translation
 
         return {
           pos,
@@ -90,27 +84,34 @@ export default {
         let pos;
 
         if (this.stateList[i].start) {
-          this.stateList[i].pos -= 1;
+          this.stateList[i].pos += 0.5; // Change the sign to "+" to move items to the right
           pos = this.stateList[i].pos;
           slider.style.transform = `translate(${pos}px, -50%)`;
         }
 
-        const isComplete = pos <= -sliderWidth;
-        const isOutSeen = pos <= -this.widthWrap - sliderWidth;
+        const isComplete = pos >= this.widthWrap; // Check if it reaches the right boundary
+        const isOutSeen = pos >= 0; // Check if it has come back to the start of the parent div
 
         if (isComplete) {
+          // Move the item to the left of the '.wrap-slider' container
+          this.stateList[i].pos = this.stateList[nextIndex].pos - sliderWidth;
+
+          // Reset the item's position immediately
+          slider.style.transform = `translate(${this.stateList[i].pos}px, -50%)`;
+
           this.stateList[nextIndex].start = true;
+          this.stateList[i].start = false;
         }
 
         if (isOutSeen) {
-          this.stateList[i].start = false;
-          this.stateList[i].pos = 0;
+          this.stateList[i].start = true; // Start the item's animation again after resetting to the start
         }
       }
     },
   },
 };
 </script>
+
 
 <style lang="scss" scoped>
 @import "@/assets/style/main.scss";
@@ -121,6 +122,7 @@ export default {
   width: 50vw;
   height: 100%;
   align-items: center;
+  margin: auto;
 }
 
 .wrap-slider {
