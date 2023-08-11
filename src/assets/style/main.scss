@@ -1,43 +1,48 @@
 $primary: #00B894;
 $secondary: #55E6C1;
-$highlight: #00FFD4;
-$darktone: rgba(0, 159, 167, 0.2);
-$neutral-background: #101010;
-$background-accent: #1D1E22;
-$background-transparent: rgba(16, 16, 16, 0.88);
+$highlight: #00deb4;
+$darktone: rgb(37, 90, 85);
+$neutral-background: #131313;
+$background-accent: #0a0b0b;
+$background-transparent: rgb(16, 16, 16);
 $text: #FFFFFF;
 
-@font-face {
-  font-family: 'Blanka';
-  src: url('@/assets/fonts/Blanka.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Neurock';
-  src: url('@/assets/fonts/Neurock.ttf') format('truetype');
-}
+// * {
+//   border: red solid 1px;
+// }
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('@/assets/fonts/Montserrat.otf') format('opentype');
+  src: url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
+}
+
+@font-face {
+  font-family: 'Open Sans', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&display=swap');
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
   margin: 0;
+  background-color: $neutral-background;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
-  font-family: "Blanka";
+  font-family: "Montserrat", sans-serif;
   font-size: clamp(2rem, 10vw, 2rem);
   padding: 0rem clamp(1rem, 2vw, 3rem);
   border-radius: clamp(0.4rem, 0.75vw, 1rem);
   text-align: left;
+  
 }
 
-h3, h2, p {
-  font-family: "Montserrat", monospace;
+h3, h2, a {
+  font-family: "Montserrat", sans-serif;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
 }
 
 .magic {
@@ -72,10 +77,16 @@ h1, h2, h3, p {
   margin: 0rem;
 }
 
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+
 .card {
-  width: 640px;
+  width: 40rem;
   position: relative;
-  background-color: rgb(16 16 16);
+  background-color: $background-accent;
   border: 1px solid rgb(255 255 255 / 5%);
   border-radius: 1.5rem;
   padding: 1rem;
@@ -115,13 +126,12 @@ h1, h2, h3, p {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.1) 1px, 
-    transparent 1px
-  );
+  // background-image: radial-gradient(
+  //   rgba(255, 255, 255, 0.1) 1px, 
+  //   transparent 1px);
   background-position: 50% 50%;
   background-size: 1.1rem 1.1rem;
-  padding: 4rem;
+  padding: 4rem 0 1rem 0;
   border-radius: 1.25rem;
   overflow: hidden;
 }
@@ -131,7 +141,8 @@ h1, h2, h3, p {
 }
 
 .card-content > h1 {
-  color: rgb(250 249 246); 
+  // color: rgb(250 249 246); 
+  color: $highlight;
   font-size: 2.6rem;
 }
 

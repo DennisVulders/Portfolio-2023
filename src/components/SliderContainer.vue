@@ -122,7 +122,7 @@ export default {
 .container {
   display: flex;
   flex-direction: row;
-  width: 50vw;
+  width: 100%;
   height: 100%;
   align-items: center;
   margin: auto;
@@ -131,7 +131,7 @@ export default {
 .wrap-slider {
   width: 100%;
   overflow: hidden;
-  height: 200px;
+  height: 3rem;
   position: relative;
   &::before,
   &::after {

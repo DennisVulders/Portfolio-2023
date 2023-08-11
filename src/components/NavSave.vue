@@ -1,23 +1,36 @@
 <template>
   <div class="nav-wrapper">
+    <!-- The transparent dark background that covers the whole screen -->
+    <div v-if="isMenuOpen" class="dark-background" @click="handleHamburgerClick(false)"></div>
     <nav data-toggled="false" data-transitionable="false">
       <div id="nav-logo-section" class="nav-section">
         <router-link to="/" @click="handleLinkClick">
           <img src="@/assets/logo-border.svg" alt="logo" class="logo-img">
         </router-link>
       </div>
-        <ul id="nav-link-section" class="nav-section ">
-          <li><a>About</a></li>
-          <li><a>Work</a></li>
-          <li><a>Contact</a></li>
-        </ul>
+      <div class="nav-page-section">
+        <div id="nav-link-section" class="nav-section ">
+          <router-link :to="{ name: 'about' }" class="">About</router-link>
+          <router-link :to="{ name: 'about' }" class="">Work</router-link>
+        </div>
+        <!-- <div id="nav-social-section" class="nav-section ">
+          <a href="#">
+            <font-awesome-icon icon="fa-regular fa-envelope" />
+          </a>
+          <a href="#" target="_blank">
+            <font-awesome-icon icon="fa-brands fa-linkedin" /></a>
+          <a href="#">
+            <font-awesome-icon icon="fa-solid fa-file" />
+          </a>
+        </div> -->
+      </div>
       <!-- Mobile version of the navbar -->
       <div id="nav-mobile-section">
         <HamburgerMenu class="nav-toggle-button" @hamburger-click="handleHamburgerClick" :isActive="isMenuOpen"/>
         <div class="mobile-menu-container" :style="getTransformStyle">
           <div v-if="isMenuOpen" class="rela-block drop-down-container">
-            <!-- <router-link :to="{ name: 'about' }" class="drop-down-item" @click="handleLinkClick">About</router-link>
-            <router-link :to="{ name: 'about' }" class="drop-down-item" @click="handleLinkClick">Work</router-link> -->
+            <router-link :to="{ name: 'about' }" class="drop-down-item" @click="handleLinkClick">About</router-link>
+            <router-link :to="{ name: 'about' }" class="drop-down-item" @click="handleLinkClick">Work</router-link>
             <a href="#" class="drop-down-item" @click="handleLinkClick">
               <font-awesome-icon icon="fa-regular fa-envelope" class="mob-nav-icon"/>
               Stuur me een mailtje!
@@ -59,7 +72,7 @@ export default {
 
     // Use computed to make getTransformStyle reactive to changes in isMenuOpen
     const getTransformStyle = computed(() => {
-      return isMenuOpen.value ? { height: "100vh", padding: "16vh 0 0 0" } : { height: 0 , padding: 0};
+      return isMenuOpen.value ? { height: "18.4vh",   border: "1px rgb(37, 90, 85) solid" } : { height: 0 , border: "0"};
     });
 
     return {
@@ -79,9 +92,22 @@ export default {
   z-index: 10;
 }
 
+.dark-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Adjust the alpha value for the desired transparency */
+  z-index: 2; /* Set a z-index behind the navigation bar */
+}
+
 nav {
   display: flex;
   width: 100%;
+  border-bottom: 1px solid $highlight;
+  backdrop-filter: blur(16px);
+  background-color: $neutral-background;
   justify-content: space-between;
   position: fixed;
   z-index: 10;
@@ -91,10 +117,10 @@ nav .nav-section {
   padding: 1rem;
   display: flex;
   gap: 1rem;
+  border-left: 1px solid $highlight;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
-  z-index: 5;
 }
 
 nav a {
@@ -104,29 +130,8 @@ nav a {
 
 .nav-page-section {
   display: flex;
+  flex-basis: calc(100% / 3 * 2);
   z-index: 2;
-}
-
-#nav-link-section {
-  margin: 1.5rem 1.5rem 0 0;
-  list-style: none;
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  background-color: #1313134d;
-  height: fit-content;
-  padding: 1rem;
-  display: flex;
-  gap: 1rem;
-  text-transform: uppercase;
-  flex-direction: row;
-  justify-content: center;
-  border-radius: 0.5rem;
-}
-
-#nav-link-section > li {
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 50px;
 }
 
 #nav-mobile-section {
@@ -155,6 +160,11 @@ nav a {
 .logo-img {
   width: 64px;
   height: 64px;
+}
+
+#nav-link-section {
+  flex-basis: 50%;
+  gap: 6rem;
 }
 
 #nav-social-section {
@@ -200,14 +210,15 @@ nav a {
     align-items: center;
     background-color: transparent;
     border: none;
+    border-left: 1px solid $highlight;
     color: white;
     cursor: pointer;
     gap: 0.8rem;
     justify-content: center;
     outline: none;
-    padding: 0rem 1rem;
+    padding: 0rem 3rem;
     position: relative;
-    z-index: 5;
+    z-index: 3;
   }
 
   .nav-toggle-button:hover,
@@ -220,17 +231,17 @@ nav a {
 
 .mobile-menu-container {
   height: 0;
-  width: 100vw;
+  width: 100vw; /* Set the initial max-width to 0 */
   border: 0;
   border-radius: 0 0px 15px 15px;
   position: fixed;
-  right: 0px;
+  right: -1px;
+  top: 6.5rem;
   background-color: rgba(16, 16, 16, 0.88);
   transform-origin: top right; /* Set the transformation origin to the top right corner */
-  transition:  0.7s ease; /* Use transform and max-width for the transition */
-  z-index: 3;
+  transition:  0.35s ease; /* Use transform and max-width for the transition */
+  z-index: 5;
   overflow: hidden;
-  backdrop-filter: blur(10px); /* You can adjust the blur value */
 }
 
 .rela-block {

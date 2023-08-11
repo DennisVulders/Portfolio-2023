@@ -1,21 +1,15 @@
 <template>
-  <SideMenu v-if="showSideMenu" @toggle-side-menu="toggleSideMenu" @link-clicked="closeSideMenu"/>
   <HeaderNav @toggle-side-menu="toggleSideMenu" />
-  <!-- Main content container -->
-  <div class="main-content">
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script>
 import HeaderNav from "@/components/HeaderNav.vue";
-import SideMenu from "@/components/SideMenu.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     HeaderNav,
-    SideMenu,
   },
   data() {
     return {
@@ -27,11 +21,12 @@ export default {
       this.showSideMenu = !this.showSideMenu; // Toggle the side menu's visibility
     },
     closeSideMenu() {
-      this.showSideMenu = false; // Close the side menu when a link is clicked
+      this.showSideMenu = false; // Close the side menu when a link is clicked or a click event occurs outside the component
     },
   },
-}
+};
 </script>
+
 
 <style lang="scss">
 @import "@/assets/style/main.scss";
@@ -41,25 +36,15 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-body {
-  background-color: $neutral-background;
+  height: 100%;
+  width: 100%;
 }
 
 nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  color: white;
   &.router-link-exact-active {
-    color: #42b983;
+    color: $highlight;
   }
-}
-
-.main-content {
-  padding: 1rem;
-  overflow: hidden;
-  position: relative; /* Ensure the container respects z-index */
-  z-index: 0; /* Set a lower z-index to keep the main content below the side menu */
 }
 
 /* Add z-index to the HeaderNav to ensure it's below the side menu */

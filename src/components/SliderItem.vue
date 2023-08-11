@@ -5,7 +5,8 @@
         <div class="tag-border">
           <div class="tag-inside-wrapper">
             <div class="tag-icon">
-              <font-awesome-icon :icon="icon" />
+              <font-awesome-icon v-if="Array.isArray(icon)" :icon="icon" />
+              <img v-else :src="icon" class="custom-svg-icon"/>
             </div>
             <a :href="skill.href" :class="skill.class">{{ skill.text }}</a>
           </div>
@@ -23,7 +24,7 @@ export default {
       required: true,
     },
     icon: {
-      type: Array, // Assuming you're using an array for the icon prop (e.g., ['far', 'envelope'])
+      type: [Array, String], // Allow both Array and String types for the icon prop
       required: true,
     },
   },
@@ -103,5 +104,9 @@ li {
 
 .tag-icon {
   font-size: 15px;
+}
+.custom-svg-icon {
+  height: 15px;
+  width: 15px;
 }
 </style>
