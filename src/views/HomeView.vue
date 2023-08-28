@@ -1,45 +1,70 @@
 <template>
   <div class="main-content">
-    <div class="card-container">
-      <div class="card">
-        <div class="card-content">
-          <img src="../assets/logox128.png" alt="foto van mijn gezicht ofzo">
+    <section class="card-container" id="over">
+      <div class="centered-columns">
+        <div class="over-grid">
           <h1>Dennis Vulders</h1>
-          <p>Hallo, ik ben Dennis, een front-end developer gevestigd in Noord-Brabant. 
-            Ik bouw interactieve en esthetisch aantrekkelijke webervaringen om gebruikers te betrekken en te verrassen. 
-            Mijn passie voor webontwikkeling drijft me om voortdurend nieuwe technologieën te verkennen en hoogwaardige oplossingen te leveren.
-          </p>
-          <SliderContainer :skills="languageData" :speed="0.5" />
-          <SliderContainer :skills="ToolsData" :speed="0.8" />
+          <div class="card portret">
+            <div class="card-content">
+              <img src="../assets/img/portret.png" alt="foto van mijn gezicht ofzo">
+              <p>
+                Hey, ik ben Dennis, een front-end developer in Noord-Brabant. 
+                Mijn focus ligt op het ontwerpen en bouwen van aantrekkelijke webervaringen die niet alleen visueel indruk maken, maar ook intuïtief en gebruiksvriendelijk zijn. 
+                Met een oog voor detail en een passie voor nieuwe technologieën streef ik ernaar om websites te creëren die mensen echt weten te boeien en betrekken.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="skills-grid">
+          <div class="skills skills-column-1">
+            <h1>Mijn skills</h1>
+            <div class="card">
+              <div class="card-content">
+                <p>
+                  Mijn front-end ervaring stelt me in staat om boeiende en responsieve gebruikerservaringen te creëren. 
+                  Ik heb gewerkt aan het ontwerpen en stylen van webpagina's, het tot leven brengen van interactieve elementen en het bouwen van volledig geïntegreerde webapplicaties. 
+                  Mijn workflow is geoptimaliseerd met tools voor ontwerp, codering, versiebeheer en projectbeheer. 
+                </p>
+                <SliderContainer :skills="languageData" :speed="0.5" />
+                <SliderContainer :skills="ToolsData" :speed="0.8" />
+              </div>
+            </div>
+          </div>
+          <div class="skills skills-column-2">
+            <h1>Motivatie</h1>
+            <div class="card">
+              <div class="card-content">
+                <p>
+                  Als gedreven front-end developer omarm ik voortdurende groei door het verkennen van nieuwe technologieën en ontwikkelingen.
+                  Mijn passie voor creatieve en functionele gebruikerservaringen stimuleert me om uitdagingen aan te gaan en innovatieve oplossingen te vinden.
+                  Door mijn toewijding aan leren en voortdurende verbetering ben ik klaar om samen te werken aan projecten die zowel technisch verfijnd als visueel indrukwekkend zijn.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-content">
-          <img src="../assets/logox128.png" alt="foto van mijn gezicht ofzo">
-          <h1 ref="title" data-value="About me" class="magic">About me</h1>
-          <h2>Dennis Vulders</h2>
-          <p>With over a decade of experience across multi-disciplines, Jordan creates intuitive and aesthetically engaging digital experiences alongside chosen partners.</p>
-        </div>
-      </div>
-    </div>
-    <!-- <div class="carousel-container">
-      <CaseCarousel />
-    </div> -->
-    <TestTest />
-    <div style="height: 100px; width: 100px; background-color: red;"></div>
+    </section>
+    <section class="project-container" id="projecten">
+      <h1 class="section-title">Mijn projecten</h1>
+      <ProjectCarousel />
+    </section>
+    <section class="contact-container" id="contact">
+        <ContactForm />
+    </section>
   </div>
 </template>
 
 <script>
 import SliderContainer from '@/components/SliderContainer.vue';
-import TestTest from '@/components/TestTest.vue';
-// import CaseCarousel from '@/components/CaseCarousel.vue';
+import ProjectCarousel from '@/components/ProjectCarousel.vue';
+import ContactForm from '@/components/ContactForm.vue'
 
 export default {
   components: {
     SliderContainer,
-    TestTest,
-    // CaseCarousel
+    ProjectCarousel,
+    ContactForm
   },
   data() {
     return {
@@ -62,42 +87,6 @@ export default {
       ],
     };
   },
-
-  mounted() {
-    // this.animateText(); // Invoke the animation on page load
-
-    // const title = this.$refs.title;
-    // title.addEventListener("mouseover", this.animateText); // Add event listener for mouseover
-  },
-  methods: {
-    // animateText() {
-    //   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    //   let iteration = 0;
-    //   let interval = null;
-    //   const title = this.$refs.title;
-
-    //   clearInterval(interval);
-
-    //   interval = setInterval(() => {
-    //     title.innerText = title.innerText
-    //       .split("")
-    //       .map((letter, index) => {
-    //         if (index < iteration) {
-    //           return title.dataset.value[index];
-    //         }
-
-    //         return letters[Math.floor(Math.random() * 26)];
-    //       })
-    //       .join("");
-
-    //     if (iteration >= title.dataset.value.length) {
-    //       clearInterval(interval);
-    //     }
-
-    //     iteration += 1 / 4;
-    //   }, 30);
-    // },
-  },
 };
 </script>
 
@@ -105,20 +94,88 @@ export default {
 @import "@/assets/style/main.scss";
 
 .main-content {
-  padding: 14vh 0rem 0rem 0rem;
-  // overflow: hidden;
+  padding-bottom: 14vh;
   overflow-x: hidden;
-  // position: relative; /* Ensure the container respects z-index */
-  // z-index: 0; /* Set a lower z-index to keep the main content below the side menu */
-  // border: aliceblue 1px solid;
   display: flex;
   flex-direction: column;
   height: 100%;
+  gap: 3rem;
+}
+
+.centered-columns {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5rem;
+}
+
+.portret {
+  width: 30rem;
+}
+
+.portret > .card-content > img {
+  height: 50vh;
+  border-radius: 1.5rem;
+  width: 100%;
+  object-fit: cover;
+  object-position: 100% 10%;
+}
+
+.portret > .card-content > p {
+  text-align: center;
+}
+
+.over-grid {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  gap: 1rem;
+}
+.skills-grid {
+  display: grid;
+  grid-template-rows: repeat(2, auto); /* Two rows of equal height */
+  gap: 1rem; /* Gap between rows */
+}
+
+.skills-column-1 {
+  grid-row: span 2; /* Occupies rows 1 and 2 */
+}
+
+.skills-column-2 {
+  grid-row: span 2; /* Occupies rows 1 and 2 */
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   gap: 1rem;
 }
 
-.carousel-container {
-  position: relative;
+.project-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  min-height: 100vh;
 }
+
+.contact-container {
+  min-height: 100vh;
+}
+
+//mobile 
+@media screen and (max-width: 768px) {
+  
+  .centered-columns {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .portret {
+    width: inherit;
+  }
+  .skills-grid {
+    gap: 2rem;
+  }
+}
+
 
 </style>

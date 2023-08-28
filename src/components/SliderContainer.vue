@@ -144,12 +144,12 @@ export default {
   &::before {
     top: 0;
     left: 0;
-    background: linear-gradient(to right, rgb(16, 16, 16) 20%, rgba(16, 16, 16, 0) 100%);
+    background: linear-gradient(to right, rgb(10, 11, 11) 20%, rgba(10, 11, 11, 0) 100%);
   }
   &::after {
     top: 0;
     right: 0;
-    background: linear-gradient(to left, rgb(16, 16, 16) 20%, rgba(16, 16, 16, 0) 100%);
+    background: linear-gradient(to left, rgb(10, 11, 11) 20%, rgba(10, 11, 11, 0) 100%);
   }
 }
 

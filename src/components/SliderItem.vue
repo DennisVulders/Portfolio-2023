@@ -35,7 +35,6 @@ export default {
 @import "@/assets/style/main.scss";
 li {
   padding: 10px;
-
   p {
     display: block;
     padding: 50px;
@@ -49,12 +48,10 @@ li {
 }
 
 .item {
-  h4 { font-size: 28px; }
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #343434;
   text-decoration: none;
 }
 
@@ -69,37 +66,24 @@ li {
 }
 
 .tag-border {
-  background-image: linear-gradient(to right, #00B894, #00FFD4, #00B894);
-  border-radius: 999px;
+  background: $highlight;
+  border-radius: 20px;
   padding: 1px;
 }
 
 .tag-inside-wrapper {
   grid-column-gap: .5rem;
-  color: #c2bad9;
+  color: $text;
   white-space: nowrap;
-  background-color: #0c0228;
+  background-color: $background-accent;
   border: 0 #000;
   border-radius: 999px;
   justify-content: center;
   align-items: center;
   padding: .75rem 1.5rem .6rem;
-  font-family: roc-grotesk,sans-serif;
   font-size: 1.125rem;
   line-height: 1;
   display: flex;
-}
-
-.tag-green-dot {
-  width: 8px;
-  height: 8px;
-  max-height: 8px;
-  max-width: 8px;
-  min-height: 8px;
-  min-width: 8px;
-  background-color: $highlight;
-  border-radius: 999px;
-  margin-top: -2px;
 }
 
 .tag-icon {

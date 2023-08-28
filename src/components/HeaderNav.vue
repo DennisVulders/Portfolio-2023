@@ -3,36 +3,32 @@
     <nav data-toggled="false" data-transitionable="false">
       <div id="nav-logo-section" class="nav-section">
         <router-link to="/" @click="handleLinkClick">
-          <img src="@/assets/logo-border.svg" alt="logo" class="logo-img">
+          <img src="@/assets/img/logo-border.svg" alt="logo" class="logo-img">
         </router-link>
       </div>
-        <ul id="nav-link-section" class="nav-section ">
-          <li><a>About</a></li>
-          <li><a>Work</a></li>
-          <li><a>Contact</a></li>
-        </ul>
-      <!-- Mobile version of the navbar -->
+      <ul id="nav-link-section" class="nav-section">
+        <li><a href="#over" class="drop-down-item" @click="handleLinkClick">Over</a></li>
+        <li><a href="#projecten" class="drop-down-item" @click="handleLinkClick">Projecten</a></li>
+        <li><a href="#contact" class="drop-down-item" @click="handleLinkClick">Contact</a></li>
+      </ul>
       <div id="nav-mobile-section">
         <HamburgerMenu class="nav-toggle-button" @hamburger-click="handleHamburgerClick" :isActive="isMenuOpen"/>
         <div class="mobile-menu-container" :style="getTransformStyle">
           <div v-if="isMenuOpen" class="rela-block drop-down-container">
-            <!-- <router-link :to="{ name: 'about' }" class="drop-down-item" @click="handleLinkClick">About</router-link>
-            <router-link :to="{ name: 'about' }" class="drop-down-item" @click="handleLinkClick">Work</router-link> -->
-            <a href="#" class="drop-down-item" @click="handleLinkClick">
+            <a href="#over" class="drop-down-item" @click="handleLinkClick">
               <font-awesome-icon icon="fa-regular fa-envelope" class="mob-nav-icon"/>
-              Stuur me een mailtje!
+              Over mij
             </a>
-            <a href="#" target="_blank" class="drop-down-item" @click="handleLinkClick">
+            <a href="#projecten" target="_blank" class="drop-down-item" @click="handleLinkClick">
               <font-awesome-icon icon="fa-brands fa-linkedin" class="mob-nav-icon"/>
-              Zeg hallo op LinkedIn!
+              Mijn projecten
             </a>
-            <a href="#" class="drop-down-item" @click="handleLinkClick">
+            <a href="#contact" class="drop-down-item" @click="handleLinkClick">
               <font-awesome-icon icon="fa-solid fa-file" class="mob-nav-icon"/>
-              Bekijk mijn CV!
+              Contact
             </a>
-            <!-- <a href="#" class="drop-down-item" @click="handleLinkClick">Contact</a> -->
           </div>
-        </div>      
+        </div>
       </div>
     </nav>
   </div>
@@ -46,16 +42,32 @@ export default {
   components: {
     HamburgerMenu,
   },
+  methods: {
+    handleLinkClick(event) {
+    this.isMenuOpen = false; // Close the mobile menu
+
+    const targetSection = document.querySelector(event.target.getAttribute('href'));
+    if (targetSection) {
+      event.preventDefault(); // Prevent default link behavior
+      let offsetTop = targetSection.getBoundingClientRect().top;
+      let adjustedOffsetTop = offsetTop;
+
+      if (event.target.getAttribute('href') === '#over') {
+        adjustedOffsetTop -= 14 * window.innerHeight / 100; // Subtract 14vh
+      }
+
+      window.scrollTo({
+        top: window.scrollY + adjustedOffsetTop,
+        behavior: 'smooth',
+      });
+    }
+  },
+    handleHamburgerClick(isActive) {
+      this.isMenuOpen = isActive;
+    },
+  },
   setup() {
     const isMenuOpen = ref(false);
-
-    const handleHamburgerClick = (isActive) => {
-      isMenuOpen.value = isActive;
-    };
-
-    const handleLinkClick = () => {
-      isMenuOpen.value = false;
-    };
 
     // Use computed to make getTransformStyle reactive to changes in isMenuOpen
     const getTransformStyle = computed(() => {
@@ -64,8 +76,6 @@ export default {
 
     return {
       isMenuOpen,
-      handleLinkClick,
-      handleHamburgerClick,
       getTransformStyle,
     };
   },
@@ -77,6 +87,7 @@ export default {
 .nav-wrapper {
   position: relative;
   z-index: 10;
+  height: 12vh;
 }
 
 nav {
@@ -108,10 +119,10 @@ nav a {
 }
 
 #nav-link-section {
-  margin: 1.5rem 1.5rem 0 0;
+  margin: 0rem 1rem 0 0;
   list-style: none;
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   background-color: #1313134d;
   height: fit-content;
   padding: 1rem;
@@ -121,6 +132,7 @@ nav a {
   flex-direction: row;
   justify-content: center;
   border-radius: 0.5rem;
+  align-self: center;
 }
 
 #nav-link-section > li {
@@ -247,10 +259,34 @@ nav a {
 
 .drop-down-item {
   text-decoration: none;
-  color: #00deb4;
+  color: $highlight;
   font-family: "Montserrat";
-  border-bottom: 1px rgb(37, 90, 85) solid;
-  padding: 1rem 1rem 1rem 1.5rem;
+  padding: 1rem;
+  border-bottom: none;
+  position: relative; /* Add relative positioning to contain the pseudo-element */
+  transition: border-bottom-color 0.3s ease-out; /* Transition the border-bottom-color property */
+}
+
+.drop-down-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; /* Position the pseudo-element just below the item's border */
+  left: 50%; /* Start from the middle */
+  transform: translateX(-50%); /* Center the pseudo-element */
+  width: 0; /* Initially no width */
+  height: 2px; /* Height of the border */
+  background-color: $highlight; /* Border color */
+  transition: width 0.3s ease-out, opacity 0.3s ease-out; /* Transition width and opacity properties */
+  opacity: 0; /* Initially no border */
+}
+
+.drop-down-item:hover::after {
+  width: 100%; /* Expand the width on hover and for active items */
+  opacity: 1; /* Show the border on hover and for active items */
+}
+
+.mobile-menu-container > .drop-down-container > .drop-down-item {
+  border-bottom: 1px solid $highlight;
 }
 
 .mob-nav-icon {
