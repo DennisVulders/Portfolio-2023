@@ -1,5 +1,6 @@
 <template>
   <div class="main-content">
+    <!-- <div v-for="(star, index) in stars" :key="index" class="star" :style="star.style"></div> -->
     <section class="card-container" id="over">
       <div class="centered-columns">
         <div class="over-grid">
@@ -64,7 +65,7 @@ export default {
   components: {
     SliderContainer,
     ProjectCarousel,
-    ContactForm
+    ContactForm,
   },
   data() {
     return {
@@ -85,8 +86,27 @@ export default {
         { text: 'Trello', icon: ['fab', 'trello'] },
         { text: 'Adobe Creative Cloud', icon: "img/icons/Adobe.svg" },
       ],
+      stars: [],
+      numStars: Math.floor(Math.random() * 50) + 10 // Generates a random number between 10 and 59
     };
   },
+  mounted() {
+    // this.generateStars();
+  },
+  methods: {
+    // generateStars() {
+    //   for (let i = 0; i < this.numStars; i++) {
+    //     const star = {
+    //       style: {
+    //         left: Math.random() * 100 + '%',
+    //         bottom: Math.random() * 100 + 'px', // Stars start at the bottom
+    //         animationDelay: Math.random() * 10 + 's'
+    //       }
+    //     };
+    //     this.stars.push(star);
+    //   }
+    // }
+  }
 };
 </script>
 
@@ -94,7 +114,7 @@ export default {
 @import "@/assets/style/main.scss";
 
 .main-content {
-  padding-bottom: 14vh;
+  // padding-bottom: 14vh;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;

@@ -1,6 +1,6 @@
 <template>
-  <section class="contact-container">
-    <div class="call-to-action">
+  <div class="contact-wrapper star-bg">
+    <div class="call-to-action ">
       <h1 class="cta-title">Neem contact met me op 
         <font-awesome-icon icon="face-laugh-beam" class="icon-highlight" />
       </h1>
@@ -25,20 +25,22 @@
         </a>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
+
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/style/main.scss";
-.contact-container {
+.contact-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   padding: 0 1rem;
+  height: 100vh;
 }
 
 .call-to-action {
@@ -90,7 +92,7 @@
 
 // mobile
 @media screen and (max-width: 768px) {
-  .contact-container {
+  .contact-wrapper {
     display: block;
   }
   .call-to-action {

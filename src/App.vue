@@ -1,15 +1,21 @@
 <template>
-  <HeaderNav @toggle-side-menu="toggleSideMenu" />
-  <router-view />
+  <div id="app">
+    <IntroAnimation /> <!-- Show the loading animation when isLoading is true -->
+    <HeaderNav @toggle-side-menu="toggleSideMenu" />
+    <router-view />
+  </div>
+
 </template>
 
 <script>
 import HeaderNav from "@/components/HeaderNav.vue";
+import IntroAnimation from "@/components/IntroAnimation.vue"; // Import the IntroAnimation component
 
 export default {
   name: "App",
   components: {
     HeaderNav,
+    IntroAnimation,
   },
   data() {
     return {
