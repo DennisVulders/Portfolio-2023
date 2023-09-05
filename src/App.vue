@@ -1,10 +1,7 @@
 <template>
-  <div id="app">
-    <IntroAnimation /> <!-- Show the loading animation when isLoading is true -->
-    <HeaderNav @toggle-side-menu="toggleSideMenu" />
-    <router-view />
-  </div>
-
+  <IntroAnimation />
+  <HeaderNav @toggle-side-menu="toggleSideMenu" />
+  <router-view />
 </template>
 
 <script>

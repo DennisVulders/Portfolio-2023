@@ -1,23 +1,23 @@
 <template>
-  <div class="contact-wrapper star-bg">
+  <div class="contact-wrapper">
     <div class="call-to-action ">
       <h1 class="cta-title">Neem contact met me op 
         <font-awesome-icon icon="face-laugh-beam" class="icon-highlight" />
       </h1>
       <div class="cta-btn-wrapper">
-        <a href="#">
+        <a href="mailto:dennisvulders@hotmail.com">
           <div class="cta-btn">
             <font-awesome-icon icon="fa-regular fa-envelope" />
               Mail mij
           </div>
         </a>
-        <a href="#">
+        <a href="https://www.linkedin.com/in/dennis-vulders-b6b43a188/" target="_blank">
           <div class="cta-btn">
             <font-awesome-icon icon="fa-brands fa-linkedin" class="mob-nav-icon"/>
             LinkedIn
           </div>
         </a>
-        <a href="#">
+        <a href="/img/CV-2023.pdf" target="_blank">
           <div class="cta-btn">
             <font-awesome-icon icon="fa-regular fa-file" class="mob-nav-icon"/>
             Bekijk mijn CV
@@ -28,17 +28,12 @@
   </div>
 </template>
 
-<script>
-
-</script>
-
 <style lang="scss" scoped>
 @import "@/assets/style/main.scss";
 .contact-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
   padding: 0 1rem;
   height: 100vh;
 }
@@ -49,6 +44,7 @@
   justify-content: center;
   align-items: center;
   gap: 2.5rem;
+  height: 100%;
 }
 
 .cta-title {
@@ -96,7 +92,6 @@
     display: block;
   }
   .call-to-action {
-    align-items: flex-start;
     gap: 2rem;
   }
   .cta-btn-wrapper {

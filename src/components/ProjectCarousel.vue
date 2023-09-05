@@ -4,6 +4,13 @@
       <article v-for="(slide, index) in slides" :key="index" :data-status="slideStatus[index]" :class="{ 'mobile-layout': isMobile }">
         <div class="article-image-section article-section " :style="{ backgroundImage: `url(${slide.image})` }"></div>
         <div class="article-description-section article-section">
+          <div class="tag-wrapper">
+            <div class="tag" v-for="(tag, tagIndex) in slide.tags" :key="tagIndex">
+              <div class="tag-inside-wrapper">
+                {{ tag }}
+              </div>
+            </div>
+          </div>
           <p>{{ slide.description }}</p>
         </div>
         <div class="article-title-section article-section ">
@@ -34,42 +41,37 @@ export default {
         {
           title: 'Maturity model tool',
           description: 'Voor mijn afstudeer opdracht heb ik een "Maturity model tool" gemaakt voor LiveWall, gericht op hun label &Ploy. Met deze tool kunnen ze beter en sneller een overzicht krijgen van het probleem van de klant en zo gemakkelijker tot een passende op maat gemaakte oplossing komen.',
-          image: 'https://images.unsplash.com/photo-1565626424178-c699f6601afd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80',
-          client: 'LiveWall',
+          image: '/img/maturityModel.png',
           link: '',
-          tags: ['Vue 3', '']
+          tags: ['Afstudeerstage', 'Vue']
         },
         {
           title: 'OpenBoek Nijmegen',
           description: 'Open Boek Nijmegen, een stichting die jongeren aan het woord laat over hun psychische klachten. Voor deze stichting ben ik momenteel bezig om een Wordpress website te maken die zij zelf kunnen onderhouden.',
-          image: 'https://images.unsplash.com/photo-1535905557558-afc4877a26fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80',
-          client: 'OpenBoek Nijmegen',
+          image: '/img/openBoekNijmegen.jpg',
           link: '',
-          tags: ['Development', '']
+          tags: ['Freelance', 'Wordpress']
         },
         {
           title: 'PSV Playoffs app',
           description: 'PSV Playoffs is een schoolproject die ik samen met een team andere studenten heb ontwikkeld voor de experience box in het PSV stadion. Hier was het doel om de data die te zien is in de experience box op een interessantere manier weer te geven en om een gamification element toe te voegen.',
-          image: 'https://images.unsplash.com/photo-1660580554695-d2ca5008f1f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80',
-          client: 'PSV',
+          image: '/img/psv.png',
           link: '',
-          tags: ['Development', 'UI/UX designer', ]
+          tags: ['School', 'React' ]
         },
         {
           title: 'Content Dashboard',
           description: 'Voor mijn stage heb ik een dashboard ontworpen en uitgewerkt tot een werkend prototype. Met dit dashboard zijn de klanten van LiveWall in staat om de statistieken van hun game te bekijken, cheaters te blokkeren en een deel van de content te beheren. Dit was voor mij mijn eerste grote Vue project.',
-          image: 'https://images.unsplash.com/photo-1660766877755-4cac24f6cf21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80',
-          client: 'LiveWall',
+          image: '/img/contentDashboard.png',
           link: '',
-          tags: ['Development']
+          tags: ['Meeloopstage', 'Vue']
         },
         {
           title: 'De Patatterie Someren',
           description: 'Mijn eerste zelfstandige project voor een klant was om een wordpress website voor de Pattatterie te maken',
-          image: 'https://images.unsplash.com/photo-1660766877755-4cac24f6cf21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80',
-          client: ['De Patatterie'],
+          image: '/img/pataterie.jpg',
           link: 'https://patatteriesomeren.nl/',
-          tags: ['Development']
+          tags: ['Freelance', 'Wordpress' ]
         },
       ]
     };
@@ -211,17 +213,41 @@ article > .article-description-section {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 4rem; 
+  padding: 4rem;
+  gap: 1rem;
+}
+
+article > .article-description-section > .tag-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.tag {
+  background: $highlight;
+  border-radius: 20px;
+  padding: 1px;
+}
+
+.tag-inside-wrapper {
+  grid-column-gap: .5rem;
+  color: $text;
+  white-space: nowrap;
+  background-color: $background-accent;
+  border-radius: 999px;
+  justify-content: center;
+  align-items: center;
+  padding: .75rem 1.5rem .6rem;
+  font-size: 1.125rem;
+  line-height: 1;
+  display: flex;
 }
 
 article > .article-description-section > p {
   color: $text;
   font-size: 1.25em;
   text-align: left;
-}
-
-article > .article-description-section > p  > a:hover {
-  text-decoration: underline;
+  justify-content: flex-end;
 }
 
 // Title section
@@ -239,7 +265,6 @@ article > .article-title-section * {
 
 article > .article-title-section > h2 {
   text-align: left;
-  flex-basis: 50%;
   font-family: "Montserrat", sans-serif;
   font-size: 3.5rem;
   line-height: 3rem;
@@ -294,6 +319,7 @@ article > .article-nav-section > .article-nav-button:nth-child(2) {
     padding: 1rem;
     border-top: 1px solid $highlight;
     border-left: 0px;
+    gap: 1rem;
   }
 
   article.mobile-layout > .article-title-section {
@@ -302,7 +328,6 @@ article > .article-nav-section > .article-nav-button:nth-child(2) {
   }
   article.mobile-layout > .article-title-section > h2 {
     font-size: 2.5rem;
-    flex-basis: 100%;
   }
 
   article.mobile-layout > .article-nav-section {
