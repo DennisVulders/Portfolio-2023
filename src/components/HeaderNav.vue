@@ -11,20 +11,21 @@
         <li><a href="#projecten" class="drop-down-item" @click="handleLinkClick">Projecten</a></li>
         <li><a href="#contact" class="drop-down-item" @click="handleLinkClick">Contact</a></li>
       </ul>
+      <!-- mobile -->
       <div id="nav-mobile-section">
         <HamburgerMenu class="nav-toggle-button" @hamburger-click="handleHamburgerClick" :isActive="isMenuOpen"/>
         <div class="mobile-menu-container" :style="getTransformStyle">
           <div v-if="isMenuOpen" class="rela-block drop-down-container">
             <a href="#over" class="drop-down-item" @click="handleLinkClick">
-              <font-awesome-icon icon="fa-regular fa-envelope" class="mob-nav-icon"/>
+              <font-awesome-icon icon="fa-regular fa-address-card" class="mob-nav-icon"/>
               Over mij
             </a>
             <a href="#projecten" target="_blank" class="drop-down-item" @click="handleLinkClick">
-              <font-awesome-icon icon="fa-brands fa-linkedin" class="mob-nav-icon"/>
+              <font-awesome-icon icon="fa-solid fa-briefcase" class="mob-nav-icon"/>
               Mijn projecten
             </a>
             <a href="#contact" class="drop-down-item" @click="handleLinkClick">
-              <font-awesome-icon icon="fa-solid fa-file" class="mob-nav-icon"/>
+              <font-awesome-icon icon="fa-solid fa-envelope" class="mob-nav-icon"/>
               Contact
             </a>
           </div>

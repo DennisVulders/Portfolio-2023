@@ -1,26 +1,14 @@
 $primary: #00B894;
 $secondary: #8bff00;
 $highlight: #90ff00;
-// $darktone: rgb(37, 90, 85);
 $darktone: #1e3500;
 $neutral-background: #000;
 $background-accent: #0a0b0b;
 $background-transparent: rgb(16, 16, 16);
 $text: #FFFFFF;
 
-// * {
-//   border: red solid 1px;
-// }
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
-}
-
-@font-face {
-  font-family: 'Open Sans', sans-serif;
-  src: url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&display=swap');
-}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 body {
   margin: 0;
@@ -31,11 +19,11 @@ body {
 
 h1, h2, h3 {
   color: $highlight;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat' , sans-serif;
 }
 
 h1 {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat' , sans-serif;
   font-size: clamp(2rem, 10vw, 2rem);
   text-align: center;
   text-transform: uppercase;

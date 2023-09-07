@@ -5,7 +5,7 @@
         <font-awesome-icon icon="face-laugh-beam" class="icon-highlight" />
       </h1>
       <div class="cta-btn-wrapper">
-        <a href="mailto:dennisvulders@hotmail.com">
+        <a href="mailto:dennisvulderswork@gmail.com">
           <div class="cta-btn">
             <font-awesome-icon icon="fa-regular fa-envelope" />
               Mail mij
@@ -80,9 +80,6 @@
 }
 
 .cta-btn:hover {
-  // border: 1px solid $background-accent;
-  // background: $highlight;
-  // color: $background-accent;
   box-shadow: 0 0 10px rgba(144, 255, 0, 0.7);
 }
 
